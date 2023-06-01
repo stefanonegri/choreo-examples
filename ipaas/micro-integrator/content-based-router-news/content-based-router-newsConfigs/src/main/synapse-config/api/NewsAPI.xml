@@ -4,6 +4,9 @@
         <inSequence>
             <switch source="//type">
                 <case regex="sports">
+                    <log>
+                        <property name="msg" value="Sport..."/>
+                    </log>
                     <send>
                         <endpoint>
                             <http method="get" uri-template="https://feeds.bbci.co.uk/sport/rss.xml">
@@ -19,6 +22,9 @@
                     </send>
                 </case>
                 <case regex="news">
+                    <log>
+                        <property name="msg" value="news..."/>
+                    </log>
                     <send>
                         <endpoint>
                             <http method="get" uri-template="https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml">
@@ -45,7 +51,7 @@
             </switch>
         </inSequence>
         <outSequence>
-            <property name="messageType" value="application/json" scope="axis2"></property>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
             <send/>
         </outSequence>
         <faultSequence/>
